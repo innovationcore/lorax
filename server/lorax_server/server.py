@@ -35,6 +35,7 @@ class LoraxService(generate_pb2_grpc.LoraxServiceServicer):
         self.model = model
         self.server_urls = server_urls
         # For some reason, inference_mode does not work well with GLOO which we use on CPU
+        logger.info("UPDATED!!!!!!!! CODY")
         if model.device.type == "cuda":
             # Force inference mode for the lifetime of LoraxService
             self._inference_mode_raii_guard = torch._C._InferenceMode(True)
