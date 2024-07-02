@@ -97,7 +97,6 @@ def check_architectures(
     adapter_id: str,
     adapter_config: "AdapterConfig",
     trust_remote_code: bool = False,
-    lazy_load_weights: bool = True,
 ):
     try:
         if not adapter_config.base_model_name_or_path:
@@ -137,6 +136,7 @@ def load_module_map(
     weight_names: Tuple[str],
     api_token: str,
     trust_remote_code: bool = False,
+    lazy_load_weights: bool = True,
 ) -> Tuple["ModuleMap", "AdapterConfig", Set[str], PreTrainedTokenizer]:
     # TODO(geoffrey): refactor this and merge parts of this function with
     # lorax_server/utils/adapter.py::create_merged_weight_files
