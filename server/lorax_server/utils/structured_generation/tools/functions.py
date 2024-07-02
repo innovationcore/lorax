@@ -87,12 +87,14 @@ def _check_valid_jsonschema(x: dict[str, Any]) -> dict[str, Any]:
 
 
 class FunctionDefinition(BaseModel):
+    print('FunctionDefinition CREATE')
     name: str
     description: str = Field(default="")
     parameters: Annotated[dict[str, Any], AfterValidator(_check_valid_jsonschema)]
 
 
 def tools_prompt(*args: FunctionDefinition) -> str:
+    print('TOOLS PROMPT:', _DEFAULT_TOOLS_PROMPT_TEMPLATE)
     return _DEFAULT_TOOLS_PROMPT_TEMPLATE % "\n".join(json.dumps(fd) for fd in args)
 
 
